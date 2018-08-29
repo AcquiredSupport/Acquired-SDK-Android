@@ -53,15 +53,15 @@ public class HPPSetting implements Serializable {
     private String shipping_phone;
 
 
-    public Boolean getIsLive() {
-        return is_live;
+    public Boolean getIsDebug() {
+        return is_debug;
     }
 
-    public void setIsLive(Boolean is_live) {
-        this.is_live = is_live;
+    public void setIsDebug(Boolean is_live) {
+        this.is_debug = is_live;
     }
 
-    private Boolean is_live = false;
+    private Boolean is_debug = false;
 
     public int getCompanyId() {
         return company_id;
