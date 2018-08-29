@@ -13,6 +13,7 @@ public class LauncherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
         HPPSetting hppSetting = new HPPSetting(142, 1103, "lixiaoping");
+        hppSetting.setIsDebug(true);
         hppSetting.setOrderId("1103123sdf32");
         hppSetting.setTransactionType("AUTH_ONLY");
         hppSetting.setCurrencyCode("GBP");
