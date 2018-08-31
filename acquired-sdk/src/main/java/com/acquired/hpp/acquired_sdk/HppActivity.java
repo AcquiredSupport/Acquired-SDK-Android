@@ -1,6 +1,7 @@
 package com.acquired.hpp.acquired_sdk;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AlertDialog;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
@@ -58,12 +60,15 @@ public class HppActivity extends AppCompatActivity {
         hpp_WebView.setWebViewClient(webViewClient);
 
         WebSettings webSettings = hpp_WebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
+        webSettings.setJavaScriptEnabled(true);//enable javascript
 
-        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-        webSettings.setSupportZoom(true);
-        webSettings.setBuiltInZoomControls(true);
-        webSettings.setDisplayZoomControls(false);
+        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        webSettings.setSupportZoom(false);//disable zoom
+        webSettings.setBuiltInZoomControls(false);
+        webSettings.setDisplayZoomControls(false);//hide webview zoom button
+
+//        webSettings.setLoadWithOverviewMode(true);//auto fit screen
+//        webSettings.setUseWideViewPort(true);
 
         try {
             Intent intent = getIntent();
@@ -111,6 +116,30 @@ public class HppActivity extends AppCompatActivity {
         }
 
         @Override
+        public boolean onJsConfirm(WebView view, String url, String message, JsResult result) {
+            AlertDialog.Builder b = new AlertDialog.Builder(view.getContext());
+//            b.setTitle("Confirm");
+            b.setMessage(message);
+            final JsResult jsResult = result;
+            b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    jsResult.confirm();
+                }
+            });
+            b.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    jsResult.cancel();
+                }
+            });
+            AlertDialog ad = b.create();
+            ad.setCanceledOnTouchOutside(false);
+            ad.show();
+            return true;
+        }
+
+        @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
             Log.i("acquired_hpp", "APP Title:" + title);
@@ -130,9 +159,17 @@ public class HppActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        if (hpp_WebView != null) {
+            hpp_WebView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
+            hpp_WebView.clearHistory();
+            ((ViewGroup) hpp_WebView.getParent()).removeView(hpp_WebView);
+            hpp_WebView.destroy();
+            hpp_WebView = null;
+        }
+
         super.onDestroy();
-        hpp_WebView.destroy();
-        hpp_WebView = null;
+//        hpp_WebView.destroy();
+//        hpp_WebView = null;
     }
 
 }

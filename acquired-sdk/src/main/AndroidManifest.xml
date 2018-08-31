@@ -7,7 +7,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application>
-        <activity android:name=".HppActivity"></activity>
+        <activity
+            android:name=".HppActivity"
+            android:alwaysRetainTaskState="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>
