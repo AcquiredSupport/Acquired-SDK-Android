@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+def app_name = "Acquired Example"
 android {
     compileSdkVersion 28
 
@@ -11,7 +12,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        resValue "string", "app_name", "Acquired Example"
+        resValue "string", "app_name", "${app_name}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -39,11 +40,12 @@ android.applicationVariants.all { variant ->
     variant.outputs.all {
         //def date = new Date().format("yyyyMMdd" , TimeZone.getTimeZone("Asia/Shanghai"))
         def date = new Date().format("yyyyMMdd", TimeZone.getTimeZone("GMT+08"))
+
         if (variant.buildType.name.equals('debug')) {
-            outputFileName = "${}_${date}_${versionName}.apk"
+            outputFileName = "${app_name}_${date}_${versionName}.apk"
         }
         if (variant.buildType.name.equals('release')) {
-            outputFileName = "${date}_${versionName}.apk"
+            outputFileName = "${app_name}_${date}_${versionName}.apk"
         }
     }
 }
