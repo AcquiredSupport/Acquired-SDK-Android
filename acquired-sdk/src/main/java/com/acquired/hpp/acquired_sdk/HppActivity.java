@@ -1,6 +1,7 @@
 package com.acquired.hpp.acquired_sdk;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AlertDialog;
@@ -111,6 +112,30 @@ public class HppActivity extends AppCompatActivity {
             localBuilder.create().show();
 
             result.confirm();
+            return true;
+        }
+
+        @Override
+        public boolean onJsConfirm(WebView view, String url, String message, JsResult result) {
+            AlertDialog.Builder b = new AlertDialog.Builder(view.getContext());
+//            b.setTitle("Confirm");
+            b.setMessage(message);
+            final JsResult jsResult = result;
+            b.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    jsResult.confirm();
+                }
+            });
+            b.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    jsResult.cancel();
+                }
+            });
+            AlertDialog ad = b.create();
+            ad.setCanceledOnTouchOutside(false);
+            ad.show();
             return true;
         }
 
