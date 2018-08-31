@@ -9,6 +9,7 @@
     <application>
         <activity
             android:name=".HppActivity"
+            android:alwaysRetainTaskState="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
