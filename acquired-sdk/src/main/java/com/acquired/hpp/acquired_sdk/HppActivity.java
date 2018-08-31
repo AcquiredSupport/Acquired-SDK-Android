@@ -66,8 +66,8 @@ public class HppActivity extends AppCompatActivity {
         webSettings.setBuiltInZoomControls(false);
         webSettings.setDisplayZoomControls(false);//hide webview zoom button
 
-        webSettings.setLoadWithOverviewMode(true);//auto fit screen
-        webSettings.setUseWideViewPort(true);
+//        webSettings.setLoadWithOverviewMode(true);//auto fit screen
+//        webSettings.setUseWideViewPort(true);
 
         try {
             Intent intent = getIntent();
