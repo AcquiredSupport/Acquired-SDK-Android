@@ -11,7 +11,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-
+        resValue "string", "app_name", "Acquired Example"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -33,4 +33,17 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':acquired-sdk')
+}
+
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        //def date = new Date().format("yyyyMMdd" , TimeZone.getTimeZone("Asia/Shanghai"))
+        def date = new Date().format("yyyyMMdd", TimeZone.getTimeZone("GMT+08"))
+        if (variant.buildType.name.equals('debug')) {
+            outputFileName = "${}_${date}_${versionName}.apk"
+        }
+        if (variant.buildType.name.equals('release')) {
+            outputFileName = "${date}_${versionName}.apk"
+        }
+    }
 }

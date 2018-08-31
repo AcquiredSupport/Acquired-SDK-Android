@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
@@ -58,12 +59,15 @@ public class HppActivity extends AppCompatActivity {
         hpp_WebView.setWebViewClient(webViewClient);
 
         WebSettings webSettings = hpp_WebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
+        webSettings.setJavaScriptEnabled(true);//enable javascript
 
-        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-        webSettings.setSupportZoom(true);
-        webSettings.setBuiltInZoomControls(true);
-        webSettings.setDisplayZoomControls(false);
+        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        webSettings.setSupportZoom(false);//disable zoom
+        webSettings.setBuiltInZoomControls(false);
+        webSettings.setDisplayZoomControls(false);//hide webview zoom button
+
+        webSettings.setLoadWithOverviewMode(true);//auto fit screen
+        webSettings.setUseWideViewPort(true);
 
         try {
             Intent intent = getIntent();
@@ -130,9 +134,17 @@ public class HppActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        if (hpp_WebView != null) {
+            hpp_WebView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
+            hpp_WebView.clearHistory();
+            ((ViewGroup) hpp_WebView.getParent()).removeView(hpp_WebView);
+            hpp_WebView.destroy();
+            hpp_WebView = null;
+        }
+
         super.onDestroy();
-        hpp_WebView.destroy();
-        hpp_WebView = null;
+//        hpp_WebView.destroy();
+//        hpp_WebView = null;
     }
 
 }
