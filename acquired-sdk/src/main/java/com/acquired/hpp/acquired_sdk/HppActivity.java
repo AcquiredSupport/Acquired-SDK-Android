@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -29,6 +31,7 @@ import android.widget.ProgressBar;
 public class HppActivity extends AppCompatActivity {
     private WebView hpp_WebView;
     private ProgressBar hpp_ProgressBar;
+    private String url = "";
 
 
     @Override
@@ -72,8 +75,8 @@ public class HppActivity extends AppCompatActivity {
 
         try {
             Intent intent = getIntent();
-            String url = intent.getStringExtra("HPPURL");
-            hpp_WebView.loadUrl(url);
+            this.url = intent.getStringExtra("HPPURL");
+            hpp_WebView.loadUrl(this.url);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -92,13 +95,10 @@ public class HppActivity extends AppCompatActivity {
         }
 
         @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            Log.i("acquired_hpp", "Blocked URL:" + url);
-//            if (url.equals("http://www.google.com/")) {
-//                Toast.makeText(HppActivity.this, "Can not acess", Toast.LENGTH_LONG).show();
-//                return true;
+        public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+            super.onReceivedError(view, request, error);
+//            if (request.getUrl().toString().equals(this.url)) {
 //            }
-            return super.shouldOverrideUrlLoading(view, url);
         }
 
     };
@@ -168,8 +168,6 @@ public class HppActivity extends AppCompatActivity {
         }
 
         super.onDestroy();
-//        hpp_WebView.destroy();
-//        hpp_WebView = null;
     }
 
 }
