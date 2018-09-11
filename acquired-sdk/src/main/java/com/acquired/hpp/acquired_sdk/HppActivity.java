@@ -14,9 +14,13 @@ import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 /**
@@ -29,6 +33,9 @@ import android.widget.ProgressBar;
 public class HppActivity extends AppCompatActivity {
     private WebView hpp_WebView;
     private ProgressBar hpp_ProgressBar;
+    private String url = "";
+    private FrameLayout webParentView;
+    private View mErrorView;
 
 
     @Override
@@ -36,7 +43,7 @@ public class HppActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hpp);
         hpp_ProgressBar = (ProgressBar) findViewById(R.id.com_acquired_hpp_progressbar);
-
+        initErrorPage();
         this.setWebView();
     }
 
@@ -53,6 +60,7 @@ public class HppActivity extends AppCompatActivity {
     @SuppressLint("JavascriptInterface")
     private void setWebView() {
         hpp_WebView = (WebView) findViewById(R.id.com_acquired_hpp_webview);
+        webParentView = (FrameLayout) hpp_WebView.getParent();
 
 
         hpp_WebView.addJavascriptInterface(this, "android");
@@ -72,8 +80,8 @@ public class HppActivity extends AppCompatActivity {
 
         try {
             Intent intent = getIntent();
-            String url = intent.getStringExtra("HPPURL");
-            hpp_WebView.loadUrl(url);
+            this.url = intent.getStringExtra("HPPURL");
+            hpp_WebView.loadUrl(this.url);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -92,13 +100,9 @@ public class HppActivity extends AppCompatActivity {
         }
 
         @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            Log.i("acquired_hpp", "Blocked URL:" + url);
-//            if (url.equals("http://www.google.com/")) {
-//                Toast.makeText(HppActivity.this, "Can not acess", Toast.LENGTH_LONG).show();
-//                return true;
-//            }
-            return super.shouldOverrideUrlLoading(view, url);
+        public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+            super.onReceivedError(view, request, error);
+            showErrorPage();
         }
 
     };
@@ -143,6 +147,9 @@ public class HppActivity extends AppCompatActivity {
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
             Log.i("acquired_hpp", "APP Title:" + title);
+            if (title.contains("404")) {
+                showErrorPage();
+            }
         }
 
         @Override
@@ -150,6 +157,18 @@ public class HppActivity extends AppCompatActivity {
             hpp_ProgressBar.setProgress(newProgress);
         }
     };
+
+    private void showErrorPage() {
+        webParentView.removeAllViews();
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        webParentView.addView(mErrorView, 0, layoutParams);
+    }
+
+    private void initErrorPage() {
+        if (mErrorView == null) {
+            mErrorView = View.inflate(this, R.layout.layout_load_error, null);
+        }
+    }
 
 
     @JavascriptInterface
@@ -162,14 +181,15 @@ public class HppActivity extends AppCompatActivity {
         if (hpp_WebView != null) {
             hpp_WebView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
             hpp_WebView.clearHistory();
-            ((ViewGroup) hpp_WebView.getParent()).removeView(hpp_WebView);
+            if (hpp_WebView.getParent() != null)
+                ((ViewGroup) hpp_WebView.getParent()).removeView(hpp_WebView);
             hpp_WebView.destroy();
             hpp_WebView = null;
         }
 
+        if (webParentView != null) webParentView.removeAllViews();
+
         super.onDestroy();
-//        hpp_WebView.destroy();
-//        hpp_WebView = null;
     }
 
 }

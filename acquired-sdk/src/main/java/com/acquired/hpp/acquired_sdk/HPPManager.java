@@ -99,11 +99,12 @@ public class HPPManager {
         for (Field field : declaredFields) {
             field.setAccessible(true);
             try {
-                if (field.getName() == "serialVersionUID" || field.get(obj) == null || field.get(obj) == "")
-                    continue;
-                if (field.getName() == "template_id" && field.getInt(obj) < 1) continue;
-                if (field.getName() == "company_hash" || field.getName() == "mid_hash") continue;
-                map.put(field.getName(), field.get(obj));
+                String name = field.getName();
+                Object value = field.get(obj);
+                if (name == "serialVersionUID" || name == "is_debug" || value == null || value == "") continue;
+                if (name == "template_id" && field.getInt(obj) < 1) continue;
+                if (name == "company_hash" || name == "mid_hash") continue;
+                map.put(name, value);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
