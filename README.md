@@ -49,7 +49,7 @@ The HPP Manager requires some HPP settings which you can get it on acquired dash
 
 2) **Company MID ID**: Using this value the SDK will choose the default template that has been uploaded through the Acquired Dashboard.
 
-3) **Hash Code**: This parameter is used to encode the requests of HPP, a new hash will be generated , server side will check the validdity of the hash and decodes the response.
+3) **Hash Code**: This parameter is used to encode the requests of HPP, a new hash will be generated , server side will check the validity of the hash and decode the response.
 
 ```
 HPPSetting hppSetting = new HPPSetting(211, 1229, "hashcode");
