@@ -16,7 +16,7 @@ implementation 'com.github.AcquiredSupport:Acquired-SDK-Android:v1.0.0'
 
 ### Manual
 
-You can integrate the Realex Payments Android Library into your project manually.
+You can integrate the Acquired Android Library into your project manually.
 
 - Download the the latest release from GitHub:
 
