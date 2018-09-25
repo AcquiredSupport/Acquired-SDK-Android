@@ -20,7 +20,7 @@ You can integrate the Realex Payments Android Library into your project manually
 
 - Download the the latest release from GitHub:
 
-https://github.com/AcquiredSupport/Acquired-SDK-Android/releases
+    https://github.com/AcquiredSupport/Acquired-SDK-Android/releases
 
 - Add module 'acquired-sdk' into your project to use the HPP Library.
 
