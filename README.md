@@ -1,5 +1,4 @@
 # Acquired Android Library
-Want to add checkout to your Android app? No matter if your shopper wants to pay with a card (optionally with 3D Secure & One-click), wallet or a local payment method – all can be integrated in the same way, using the Acquired SDK. The Acquired SDK encrypts sensitive card data and sends it directly to Acquired in order to keep your PCI scope limited.
 
 ## Requirements
 
@@ -26,34 +25,34 @@ You can integrate the Acquired Android Library into your project manually.
 
 ## Using the HPP Library
 
-### Instantiate
+### Initiation
 
-To instantiate an instance of the HPP payment form  do the following:
+To initiate an instance of the HPP payment form  do the following:
 
 ```
-HPPSetting hppSetting = new HPPSetting(142, 1103, "lixiaoping");
+HPPSetting hppSetting = new HPPSetting(211, 1229, "hashcode");
 hppSetting.setIsDebug(true);
 hppSetting.setOrderId(generateOrderId());
 hppSetting.setTransactionType("AUTH_ONLY");
 hppSetting.setCurrencyCode("GBP");
 hppSetting.setAmount(Float.valueOf("100.1"));
-hppSetting.setErrorUrl("https://www.unfuddle.com");
+hppSetting.setErrorUrl("https://www.yourwebsite.com/error");
 
 HPPManager.init(view.getContext(), hppSetting);
 ```
 
 ### Integrate With Your Server
 
-The HPP Manager requires some Hpp settings which you can get it on acquired dashboard(server side).
+The HPP Manager requires some HPP settings which you can get it on acquired dashboard(server side).
 
-1) **Company Id**: utilizing one of the Acquired HPP server SDKs; Company Id is necessary to create an instance of HppSetting which is required for HPPManager.
+1) **Company ID**: utilising one of the Acquired HPP server SDKs; company_id is necessary to create an instance of HppSetting which is required for HPPManager.
 
-2) **Company MID Id**: Using this value that SDK will choose template that already set on server side.
+2) **Company MID ID**: Using this value the SDK will choose the default template that has been uploaded through the Acquired Dashboard.
 
-3) **Company Hash**: This parameter is used to encode the requests of HPP, a new hash will be generated , server side will check the validdity of the hash and decodes the response.
+3) **Hash Code**: This parameter is used to encode the requests of HPP, a new hash will be generated , server side will check the validdity of the hash and decodes the response.
 
 ```
-HPPSetting hppSetting = new HPPSetting(142, 1103, "your hash string");
+HPPSetting hppSetting = new HPPSetting(211, 1229, "hashcode");
 ```
 
 
@@ -65,7 +64,7 @@ Insert the code fragment into your activity to present a payment form as follows
     HPPManager.init(view.getContext(), hppSetting);
 ```
 
-Executing this code, HPP Manager will process the given parameters(HppSetting), get the request from the server, send the encoded request to HPP and present the form received back.
+Executing this code, HPP Manager will process the given parameters (HppSetting), get the request from the server, send the encoded request to HPP and present the form received back.
 
 ###  HPP Response 
 
