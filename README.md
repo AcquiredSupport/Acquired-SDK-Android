@@ -88,6 +88,7 @@ hppSetting.setOrderId(generateOrderId());
 hppSetting.setCurrencyCode("GBP");
 hppSetting.setAmount(Float.valueOf("100.1"));
 hppSetting.setBillingEmail("xxx@acquired.com");
+...
 ```
 
 These will be sent to the *Request Producer URL*, your server-side code must be setup to take in these values and pass them to the HPP server-side SDK for them to be included in the request.  
