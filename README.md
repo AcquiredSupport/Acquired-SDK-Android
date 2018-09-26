@@ -17,7 +17,7 @@ implementation 'com.github.AcquiredSupport:Acquired-SDK-Android:v1.0.0'
 
 You can integrate the Acquired Android Library into your project manually.
 
-- Download the the latest release from GitHub:
+- Download the latest release from GitHub:
 
     https://github.com/AcquiredSupport/Acquired-SDK-Android/releases
 
@@ -43,9 +43,9 @@ HPPManager.init(view.getContext(), hppSetting);
 
 ### Integrate With Your Server
 
-The HPP Manager requires some HPP settings which you can get it on acquired dashboard(server side).
+The HPPManager requires some HPP settings which you can get it on acquired dashboard(server side).
 
-1) **Company ID**: utilising one of the Acquired HPP server SDKs; company_id is necessary to create an instance of HppSetting which is required for HPPManager.
+1) **Company ID**: Utilising one of the Acquired HPP server SDKs; company_id is necessary to create an instance of HppSetting which is required for HPPManager.
 
 2) **Company MID ID**: Using this value the SDK will choose the default template that has been uploaded through the Acquired Dashboard.
 
@@ -78,7 +78,7 @@ hppSetting.setCallBackUrl("xxxx");
 ## FAQ
 
 ### Set HPP Properties
-HppSetting is used to provide all pamarters that server requires:card detail, shipping address, billing adress...etc 
+HppSetting is used to provide all pamarters that server requires:card detail, shipping address, billing address...etc 
 You can also set whatever HPP properties you need to in the component, for example;
 
 ```
@@ -94,7 +94,7 @@ These will be sent to the *Request Producer URL*, your server-side code must be 
 
 ### Testing     
 
-Acquired maintain separate endpoints for live and test transactions. Use the code below:
+Acquired maintains separate endpoints for live and test transactions. Use the code below:
 
 ```
 hppSetting.setIsDebug(true);
