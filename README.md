@@ -23,7 +23,7 @@ You can integrate the Acquired Android Library into your project manually.
 
 - Add module 'acquired-sdk' into your project to use the HPP Library.
 
-## Using the HPP Library
+## Using The HPP Library
 
 ### Initiation
 
@@ -43,7 +43,7 @@ HPPManager.init(view.getContext(), hppSetting);
 
 ### Integrate With Your Server
 
-The HPPManager requires some HPP settings which you can get it on acquired dashboard (server side).
+The HPPManager requires some HPP settings which you can get it on Acquired Dashboard (server side).
 
 1) **Company ID**: Utilising one of the Acquired HPP server SDKs; company_id is necessary to create an instance of HppSetting which is required for HPPManager.
 
@@ -61,14 +61,14 @@ HPPSetting hppSetting = new HPPSetting(211, 1229, "hashcode");
 Insert the code fragment into your activity to present a payment form as follows:
 
 ```
-    HPPManager.init(view.getContext(), hppSetting);
+HPPManager.init(view.getContext(), hppSetting);
 ```
 
-Executing this code, HPP Manager will process the given parameters (HppSetting), get the request from the server, send the encoded request to HPP and present the form received back.
+Executing this code, HPPManager will process the given parameters (HppSetting), get the request from the server, send the encoded request to HPP and present the form received back.
 
 ###  HPP Response 
 
-On the server-side you can set your own return url or call back url, hpp will handle response automatically that you don't have to do any response handling on your app. You can also set another return url or call back url when calling HPPManager in your app:
+On the server-side you can set your own return url or call back url, HPP will handle response automatically that you don't have to do any response handling on your APP. You can also set another return url or call back url when calling HPPManager in your APP:
 
 ```
 hppSetting.setReturnUrl("xxxx");
@@ -78,7 +78,7 @@ hppSetting.setCallBackUrl("xxxx");
 ## FAQ
 
 ### Set HPP Properties
-HppSetting is used to provide all parameters that server requires:card detail, shipping address, billing address..., etc. 
+HppSetting is used to provide all parameters that server requires: card detail, shipping address, billing address..., etc. 
 You can also set whatever HPP properties you need to in the component, for example;
 
 ```
