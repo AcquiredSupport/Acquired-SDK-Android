@@ -27,7 +27,7 @@ You can integrate the Acquired Android Library into your project manually.
 
 ### Initiation
 
-To initiate an instance of the HPP payment form  do the following:
+To initiate an instance of the HPP payment form do the following:
 
 ```
 HPPSetting hppSetting = new HPPSetting(211, 1229, "hashcode");
@@ -43,13 +43,13 @@ HPPManager.init(view.getContext(), hppSetting);
 
 ### Integrate With Your Server
 
-The HPPManager requires some HPP settings which you can get it on acquired dashboard(server side).
+The HPPManager requires some HPP settings which you can get it on acquired dashboard (server side).
 
 1) **Company ID**: Utilising one of the Acquired HPP server SDKs; company_id is necessary to create an instance of HppSetting which is required for HPPManager.
 
 2) **Company MID ID**: Using this value the SDK will choose the default template that has been uploaded through the Acquired Dashboard.
 
-3) **Hash Code**: This parameter is used to encode the requests of HPP, a new hash will be generated , server side will check the validity of the hash and decode the response.
+3) **Hash Code**: This parameter is used to encode the requests of HPP, a new hash will be generated, server side will check the validity of the hash and decode the response.
 
 ```
 HPPSetting hppSetting = new HPPSetting(211, 1229, "hashcode");
@@ -78,7 +78,7 @@ hppSetting.setCallBackUrl("xxxx");
 ## FAQ
 
 ### Set HPP Properties
-HppSetting is used to provide all pamarters that server requires:card detail, shipping address, billing address...etc 
+HppSetting is used to provide all parameters that server requires:card detail, shipping address, billing address..., etc. 
 You can also set whatever HPP properties you need to in the component, for example;
 
 ```
