@@ -46,7 +46,7 @@ HPPManager.init(view.getContext(), hppSetting);
 
 ### Integrate With Your Server
 
-The HPPManager requires some HPP settings which you can get it on Acquired Dashboard (server side).
+The HPPManager requires some HPP settings which you can get on Acquired Dashboard (server side).
 
 1) **Company ID**: Utilising one of the Acquired HPP server SDKs; company_id is necessary to create an instance of HppSetting which is required for HPPManager.
 
