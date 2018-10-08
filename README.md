@@ -23,6 +23,9 @@ You can integrate the Acquired Android Library into your project manually.
 
 - Add module 'acquired-sdk' into your project to use the HPP Library.
 
+## Documentation  ##
+https://docs.acquired.com/#hpp-overview
+
 ## Using the HPP Library
 
 ### Initiation
