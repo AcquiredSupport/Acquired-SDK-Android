@@ -29,7 +29,6 @@ public class LauncherActivity extends AppCompatActivity {
                 hppSetting.setTransactionType("AUTH_ONLY");
                 hppSetting.setCurrencyCode("GBP");
                 hppSetting.setAmount(Float.valueOf("100.1"));
-                hppSetting.setErrorUrl("https://www.unfuddle.com");
                 HPPManager.init(view.getContext(), hppSetting);
             }
         });
