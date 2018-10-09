@@ -23,12 +23,15 @@ public class LauncherActivity extends AppCompatActivity {
         btnPayNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HPPSetting hppSetting = new HPPSetting(142, 1103, "lixiaoping");
+                HPPSetting hppSetting = new HPPSetting(211, 1229, "hashcode");
                 hppSetting.setIsDebug(true);
                 hppSetting.setOrderId(generateOrderId());
                 hppSetting.setTransactionType("AUTH_ONLY");
                 hppSetting.setCurrencyCode("GBP");
                 hppSetting.setAmount(Float.valueOf("100.1"));
+                hppSetting.setErrorUrl("https://docs.acquired.com/error");
+                hppSetting.setReturnUrl("https://docs.acquired.com/return");
+                hppSetting.setCallBackUrl("https://docs.acquired.com/callback");
                 HPPManager.init(view.getContext(), hppSetting);
             }
         });
