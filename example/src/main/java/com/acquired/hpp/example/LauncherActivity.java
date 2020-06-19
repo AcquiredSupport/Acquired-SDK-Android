@@ -29,9 +29,22 @@ public class LauncherActivity extends AppCompatActivity {
                 hppSetting.setTransactionType("AUTH_ONLY");
                 hppSetting.setCurrencyCode("GBP");
                 hppSetting.setAmount(Float.valueOf("100.1"));
-                hppSetting.setErrorUrl("https://docs.acquired.com/error");
-                hppSetting.setReturnUrl("https://docs.acquired.com/return");
-                hppSetting.setCallBackUrl("https://docs.acquired.com/callback");
+                hppSetting.setCustomerFname("Joe");
+                hppSetting.setCustomerLname("Bloggs");
+                hppSetting.setCustomerDob("1990-01-01");
+                hppSetting.setBillingStreet("152 Aldgate Drive");
+                hppSetting.setBillingCity("London");
+                hppSetting.setBillingZipcode("E1 7RT");
+                hppSetting.setBillingCountryCodeISO2("GB");
+                hppSetting.setBillingPhoneCode("44");
+                hppSetting.setBillingPhone("2039826580");
+                hppSetting.setBillingEmail("support@acquired.com");
+                hppSetting.setMerchantContactURL("https://acquired.com/support");
+                hppSetting.setCallBackUrl("https://yoururl.com/callback");
+                hppSetting.setReturnMethod("post_message");
+                hppSetting.setIsTDS(2);
+                hppSetting.setTDSType(2);
+                hppSetting.setTDSPreference(0);
                 HPPManager.init(view.getContext(), hppSetting);
             }
         });
