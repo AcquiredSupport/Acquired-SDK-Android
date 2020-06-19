@@ -26,6 +26,7 @@ public class HPPSetting implements Serializable {
     private String merchant_custom_1;
     private String merchant_custom_2;
     private String merchant_custom_3;
+    private String merchant_contact_url;
     private String customer_title;
     private String customer_fname;
     private String customer_mname;
@@ -42,6 +43,8 @@ public class HPPSetting implements Serializable {
     private String billing_country_code_iso2;
     private String billing_email;
     private String billing_phone;
+    private String billing_phone_code;
+
 
     private String shipping_street;
     private String shipping_street2;
@@ -52,6 +55,12 @@ public class HPPSetting implements Serializable {
     private String shipping_email;
     private String shipping_phone;
 
+    private int is_tds;
+    private int tds_source;
+    private int tds_type;
+    private int tds_preference;
+
+    private String return_method;
 
     public Boolean getIsDebug() {
         return is_debug;
@@ -184,6 +193,15 @@ public class HPPSetting implements Serializable {
         this.merchant_custom_3 = merchantCustomer3;
     }
 
+    public String getMerchantContactURL() {
+        return merchant_contact_url;
+    }
+
+    public void setMerchantContactURL(String merchant_contact_url) {
+        this.merchant_contact_url = merchant_contact_url;
+    }
+
+
     public String getCustomerTitle() {
         return customer_title;
     }
@@ -296,13 +314,22 @@ public class HPPSetting implements Serializable {
         this.billing_email = billingEmail;
     }
 
-    public String getBillingphone() {
+    public String getBillingPhone() {
         return billing_phone;
     }
 
-    public void setBillingphone(String billingphone) {
-        this.billing_phone = billingphone;
+    public void setBillingPhone(String billingPhone) {
+        this.billing_phone = billingPhone;
     }
+
+    public String getBillingPhoneCode() {
+        return this.billing_phone_code;
+    }
+
+    public void setBillingPhoneCode(String billingPhoneCode) {
+        this.billing_phone_code = billingPhoneCode;
+    }
+
 
     public String getShippingStreet() {
         return shipping_street;
@@ -360,12 +387,55 @@ public class HPPSetting implements Serializable {
         this.shipping_email = shippingEmail;
     }
 
-    public String getShippingphone() {
+    public String getShippingPhone() {
         return shipping_phone;
     }
 
-    public void setShippingphone(String shippingphone) {
-        this.shipping_phone = shippingphone;
+    public void setShippingPhone(String shippingPhone) {
+        this.shipping_phone = shippingPhone;
+    }
+
+
+
+    public int getIsTDS() {
+        return this.is_tds;
+    }
+
+    public void setIsTDS(int is_tds) {
+        this.is_tds = is_tds;
+    }
+
+
+    public int getTDSSource() {
+        return this.tds_source;
+    }
+
+    public void setTDSSource(int tds_source) {
+        this.tds_source = tds_source;
+    }
+
+    public int getTDSType() {
+        return this.tds_type;
+    }
+
+    public void setTDSType(int tds_type) {
+        this.tds_type = tds_type;
+    }
+
+    public int getTDSPreference() {
+        return this.tds_preference;
+    }
+
+    public void setTDSPreference(int tds_preference) {
+        this.tds_preference = tds_preference;
+    }
+
+    public String getReturnMethod() {
+        return return_method;
+    }
+
+    public void setReturnMethod(String returnMethod) {
+        this.return_method = returnMethod;
     }
 
     public HPPSetting(int companyId, int companyMidId, String companyHash) {
