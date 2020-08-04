@@ -58,7 +58,7 @@ public class HPPManager {
      */
     private String getHppUrl(HPPSetting hppSetting) {
         Map<String, Object> parameter = HPPManager.getInstance().ConvertObjectToMap(hppSetting);
-        String url = hppSetting.getIsDebug() ? "https://qahpp2.acquired.com" : "https://hpp.acquired.com";
+        String url = hppSetting.getIsDebug() ? "https://qahpp.acquired.com" : "https://hpp.acquired.com";
         url += "/?" + HPPManager.getInstance().HttpBuildQuery(parameter);
         url += "&hash=" + HPPManager.getInstance().getHppHash(parameter, hppSetting.getCompanyHash());
         return url;
